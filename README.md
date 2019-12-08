@@ -1,6 +1,6 @@
 # FacialArm
 
-Jacob Smith 12/7/2019 18:42: Making a Repostiroy to hold a combine dproject of Facial Recognition and Arm Interface Cosi 119 Fall 2019 Brandeis University.
+
 
 Adding Luis' project first with my installation guide here:
 
@@ -29,18 +29,14 @@ I will rewrite my startup script to launch a python file named arm commander, so
 
    5) python face_finder.py, and the program will print out 
 
+   ![Out put of Face finder Program](docs/Output.png)
+
+**Notebook Log**
+
+Jacob Smith 12/7/2019 18:42: Making a Repostiroy to hold a combine dproject of Facial Recognition and Arm Interface Cosi 119 Fall 2019 Brandeis University.
+
 19:29: Luis' program works on my computer, printing out his name if he is front of camera, unknown if I am in front of camera, and doesn't rpint if a person isn't there. There is about a ten second lag on this computer.git 
 
+19:43: I made sure necessary files from my project are imported, and catkin make passes.
 
-
-python armCommander.py
-
-
-
-To Do: 
-
-SHOW lUIS' PROGRAM WORKS
-
-SHOW MY PROGRAM WORKS
-
-SHOW THEY WORK TOGETHER, DEMO VIDEO
+20:14 I removed subscriber node, mafe publisher node generic, making director of mutantStartup generic.  I also worked with Luis to make the arm_commander python node which reads the current face ros topic and publishes an arm command. The challenge is converting a data stream of current face into a set of commands for the arm that give the arm enough time to move. The current idea is to only set a new command every 4 seconds, which is clunky.  Future work: Show that Luis and my program work together and make a demo video.
