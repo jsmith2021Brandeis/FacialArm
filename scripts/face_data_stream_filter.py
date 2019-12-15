@@ -25,8 +25,8 @@ rate = rospy.Rate(.1)
 while not rospy.is_shutdown():
     if frame_counter >= 10:
         frame_counter = 0
-       
-        pub.publish(get_name)
+        if get_name != 'cant_find_face':
+            pub.publish(get_name)
 
         print get_name, frame_counter
         rate.sleep()
