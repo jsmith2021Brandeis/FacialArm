@@ -30,6 +30,21 @@ I will rewrite my startup script to launch a python file named arm commander, so
    5) python face_finder.py, and the program will print out 
 
    ![Out put of Face finder Program](docs/Output.png)
+   
+  
+**Running Guide: Facial Recognition **
+
+1. be in outermost file of the FacialArm package
+
+2. run bu shortcut on a robot
+
+3. run command: $ rosrun FacialArm face_finder.py
+
+4. run command: $ rosrun FacialArm arm_commander_combined.py 
+
+5. You shoud be up and  runnning 
+
+
 
 **Notebook Log**
 
