@@ -1,41 +1,52 @@
 #!/usr/bin/env python
-#Publishes Commands to ROS ARM using facial recognition data
 
+#importing Python labraies
+import numpy as np
 import rospy
 from std_msgs.msg import String
 
-face = 'cant_find_face'
-done=False
+frame_counter = 1
+list_of_names  = []
 
 def callback(name):
-    global done
+    
+    global get_name
+    global frame_counter
+    get_name = name
+    list_of_names.append(name)
+    frame_counter = + frame_counter + 1
 
-    if name != face and not done:
-        pub.publish("MANIP 0 \n")
-        done=True
+print 'start up has begun in the node'
+rospy.init_node('face_recognition_v2')
+face_finder = rospy.Subscriber("face_recognition", String, callback)
+pub = rospy.Publisher('face_recognition/data_clean_up', String, queue_size=1)
+pub_arm = rospy.Publisher('armcommand', String, queue_size=10)
 
-    # else:
-    #     pub.publish("MANIP 1 \n")
-    global face
-    face = name
-    print face
-
-
-
-
-
-
-# Make this into a ROS node.
-rospy.init_node('topic_publisher')
-
-# Prepare to publish topic `counter`
-pub = rospy.Publisher('armcommand', String, queue_size=10)
-color_sub = rospy.Subscriber("face_recognition", String, callback)
-
-# sleep at rate of loops per second
 rate = rospy.Rate(.5)
-commands= ["MANIP 1 \n","ARM 1 330 1 20 \n","MANIP 0 \n","MANIP 2 \n","ARM 1 1 60 20 \n"]
-index=0
-pub.publish("MANIP 1 \n")
-# loop until ^c
-rospy.spin()
+while not rospy.is_shutdown():
+    if frame_counter >= 10:
+        frame_counter = 0
+        real_name = 'cant_find_face'
+        for x in list_of_names:
+            if x != 'cant_find_face':
+                real_name = x
+        del list_of_names[:]
+        if real_name != 'cant_find_face':
+            pub.publish(real_name)
+            pub_arm("MANIP 0 \n")
+
+        print get_name, frame_counter
+        rate.sleep()
+
+
+
+
+
+
+
+
+
+
+
+
+

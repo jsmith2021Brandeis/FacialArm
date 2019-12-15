@@ -19,6 +19,7 @@ def callback(name):
 print 'start up has begun in the node'
 rospy.init_node('face_recognition_v2')
 face_finder = rospy.Subscriber("face_recognition", String, callback)
+pub_arm = rospy.Publisher('armcommand', String, queue_size=10)
 pub = rospy.Publisher('face_recognition/data_clean_up', String, queue_size=1)
 
 rate = rospy.Rate(.1)
