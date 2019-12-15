@@ -9,7 +9,6 @@ frame_counter = 1
 list_of_names  = []
 
 def callback(name):
-    
     global get_name
     global frame_counter
     get_name = name
@@ -22,18 +21,21 @@ face_finder = rospy.Subscriber("face_recognition", String, callback)
 pub = rospy.Publisher('face_recognition/data_clean_up', String, queue_size=1)
 pub_arm = rospy.Publisher('armcommand', String, queue_size=10)
 
-rate = rospy.Rate(.5)
 while not rospy.is_shutdown():
+   
     if frame_counter >= 10:
         frame_counter = 0
         real_name = 'cant_find_face'
+        
         for x in list_of_names:
             if x != 'cant_find_face':
                 real_name = x
         del list_of_names[:]
         if real_name != 'cant_find_face':
-            pub.publish(real_name)
-            pub_arm("MANIP 0 \n")
+            pub_arm.publish("MANIP 1 \n")
+            rate.sleep()
+            pub_arm.publish("MANIP 0 \n")
+           
 
         print get_name, frame_counter
         rate.sleep()
