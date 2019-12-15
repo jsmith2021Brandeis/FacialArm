@@ -40,3 +40,8 @@ Jacob Smith 12/7/2019 18:42: Making a Repostiroy to hold a combine dproject of F
 19:43: I made sure necessary files from my project are imported, and catkin make passes.
 
 20:14 I removed subscriber node, mafe publisher node generic, making director of mutantStartup generic.  I also worked with Luis to make the arm_commander python node which reads the current face ros topic and publishes an arm command. The challenge is converting a data stream of current face into a set of commands for the arm that give the arm enough time to move. The current idea is to only set a new command every 4 seconds, which is clunky.  Future work: Show that Luis and my program work together and make a demo video.
+
+12/15/2019 14:12 Luis is writing a node to clean up face recognition, then we will write a timer to request an arm motion every 4 seconds. I'm going to make sure the current repo can move the arm. 14:28: I'm getting usb cutting out after arm receives a few commands.
+
+15:03: wait for robot to turn on in runRos, making initializeserial a method in topic subscriber (to allow method to be called again if usb isn't plugged in, lead to scope errors), made initiSerial wrapper method for modularity, reordered topic subscription and publication so a callback won't happen until serial is ready.
+
