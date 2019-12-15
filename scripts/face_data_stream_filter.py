@@ -19,21 +19,15 @@ def callback(name):
 print 'start up has begun in the node'
 rospy.init_node('face_recognition_v2')
 face_finder = rospy.Subscriber("face_recognition", String, callback)
-pub = rospy.Publisher('face_recognition/data_clean_up', String, queue_size=1)
 pub_arm = rospy.Publisher('armcommand', String, queue_size=10)
+pub = rospy.Publisher('face_recognition/data_clean_up', String, queue_size=1)
 
-rate = rospy.Rate(.5)
+rate = rospy.Rate(.1)
 while not rospy.is_shutdown():
     if frame_counter >= 10:
         frame_counter = 0
-        real_name = 'cant_find_face'
-        for x in list_of_names:
-            if x != 'cant_find_face':
-                real_name = x
-        del list_of_names[:]
-        if real_name != 'cant_find_face':
-            pub.publish(real_name)
-            pub_arm("MANIP 0 \n")
+        if get_name != 'cant_find_face':
+            pub.publish(get_name)
 
         print get_name, frame_counter
         rate.sleep()
