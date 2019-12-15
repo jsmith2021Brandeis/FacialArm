@@ -45,3 +45,10 @@ Jacob Smith 12/7/2019 18:42: Making a Repostiroy to hold a combine dproject of F
 
 15:03: wait for robot to turn on in runRos, making initializeserial a method in topic subscriber (to allow method to be called again if usb isn't plugged in, lead to scope errors), made initiSerial wrapper method for modularity, reordered topic subscription and publication so a callback won't happen until serial is ready.
 
+15:51: Luis wrote the filtering nmode and tells the hand to open if it sees a face. Now we are trying to connect the two projects by having the hand move when a face is seen. I get the arm started up, then Luis starts up the camera and publishes the arm command topic
+
+16:36 I got the arm moving, the usb port was wrong. I am talking to TA about a better USb port selection system than guessing
+
+17:04: Luis and I got the arm waving when a face is seen, see our video below
+
+ [![We explain our project and show that the arm moves when the robot sees a person's face](http://img.youtube.com/vi/wVTJThKsIWs/0.jpg) ](http://www.youtube.com/watch?v=wVTJThKsIWs "Arm Interface with Facial Recognition")

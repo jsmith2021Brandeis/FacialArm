@@ -14,6 +14,6 @@ BASEDIR="$PWD"
 gnome-terminal -e 'sh -c "echo \"This Window will publish output from Arm, please look at main window for now\";sleep 40;rostopic list;sleep 5;rostopic echo /armresponse"'
 
 #run publisher node with a delay so robot can start up
-gnome-terminal -e 'sh -c "echo \"This Window will publish input to Arm, please look at main window for now\";sleep 40;cd '$BASEDIR';python arm_commander.py"'
+#gnome-terminal -e 'sh -c "echo \"This Window will publish input to Arm, please look at main window for now\";sleep 40;cd '$BASEDIR';python arm_commander.py"'
 #start robot and run subscriber node
 ssh mutant@mutant.dyn.brandeis.edu 'bash' < $BASEDIR'/mutantStartup.sh'

@@ -29,7 +29,7 @@ def sendCommand (characterCommand):
 def initSerial():
 	#intialize serial connection, updating the global variable
 	global ser
-	ser=serial.Serial("/dev/ttyUSB1",9600,timeout=3)	
+	ser=serial.Serial("/dev/ttyUSB0",9600,timeout=3)	
 	ser.baudrate=9600
 	print("Starting Serial Connection")
 
